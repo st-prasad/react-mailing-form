@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import ContactForm from "./ContactForm";
 
 const App = () => {
+
+    useEffect(() => {
+      fetch('/api')
+        .then(response => response.json())
+        .then((data) => {console.log(data)})
+    }, [])
+    
   return (
     <div className="container">
       <div className="left-column">
