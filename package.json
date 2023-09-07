@@ -19,8 +19,8 @@
     "web-vitals": "^2.1.4"
   },
   "engines": {
-    "npm": "9.6.3",
-    "node": "19.9.0"
+    "npm": "8.19.2",
+    "node": "18.12.0"
   },
   "scripts": {
     "server": "node server/index.js",

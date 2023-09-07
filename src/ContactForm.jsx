@@ -20,11 +20,51 @@ const ContactForm = () => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setButtonText("Sending...");
+
+    try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": " application/json;charset=utf-8",
+      },
+      body: JSON.stringify(formDetails),
+    });
+
+    const result = await response.json();
+    setButtonText("Send");
+    // setStatus(JSON.parse(text));
+    setFormDetails(formInitialDetails);
+    console.log(result.status);
+
+
+    if (result.status === "success") {
+      setStatus({
+        success: true,
+        message: "Message Sent!",
+      });
+    } else if (result.status === "error") {
+      setStatus({
+        success: false,
+        message: "Message Failed!, try again later",
+      });
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+    setStatus({
+      success: false,
+      message: "Could not connect to server. Please try again later.",
+    });
+  }
+};
+
   return (
     <div className="form-container">
       <h1>Contact Us</h1>
       <p>We're here to help if you have any questions</p>
-      <form className="form-inner">
+      <form className="form-inner" onSubmit={handleSubmit}>
         <div className="row">
           <input
             type="text"

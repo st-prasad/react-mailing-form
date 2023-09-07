@@ -53,9 +53,9 @@ app.post('/api/contact', bodyParser.urlencoded({extended: false}) , (req, res) =
     //error - smtp error object of sendmail function of nodemailer
     contactEmail.sendMail(mail, (error, info) => {
         if (error) {
-            res.json(error, {status: 'ERROR', responseCode: error.responseCode  });
+            res.json(error, {status: "error", responseCode: error.responseCode  });
         } else {
-            res.json({ MessageId: info.messageId ,status: 'Message Sent', info: info });
+            res.json({ MessageId: info.messageId ,status: "success", info: info });
         }
     });
 });
