@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(express.static(path.resolve(__dirname, '../build')));
 app.use(cors());
 //app.use is a middleware function that is executed every time the app receives a request (app.get, app.post, etc.)
 //app.use(bodyParser.json()); is a middleware function that parses the body of the request to json format for nodemailer to use it as a body of email message
@@ -60,6 +61,9 @@ app.post('/api/contact', bodyParser.urlencoded({extended: false}) , (req, res) =
     });
 });
 
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

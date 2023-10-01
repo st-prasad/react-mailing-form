@@ -22,13 +22,28 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+      // Validation check
+  if (
+    formDetails.firstName.trim() === "" ||
+    formDetails.email.trim() === "" ||
+    formDetails.message.trim() === ""
+    //trim() remove any leading or trailing whitespace from the input values before checking if they are empty
+  ) {
+    setStatus({
+      success: false,
+      message: "Please fill in all the required fields.",
+    });
+    return;
+  }
+
     setButtonText("Sending...");
 
     try {
     const response = await fetch("/api/contact", {
       method: "POST",
       headers: {
-        "Content-Type": " application/json;charset=utf-8",
+        "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(formDetails),
     });
