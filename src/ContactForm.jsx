@@ -68,6 +68,7 @@ const ContactForm = () => {
     }
   } catch (error) {
     console.error("Error:", error.message);
+    console.error("Error Stack:", error.stack);
     setStatus({
       success: false,
       message: "Could not connect to server. Please try again later.",
