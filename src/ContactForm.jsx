@@ -40,7 +40,7 @@ const ContactForm = () => {
     setButtonText("Sending...");
 
     try {
-    const response = await fetch("/api/contact", {
+    const response = await fetch("https://contact-form-qmqp.onrender.com/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
